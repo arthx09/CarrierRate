@@ -102,11 +102,13 @@
         </div>
     </div>
     <script src="@Url.Content("~/Scripts/jQuery-2.1.4.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Bootstrap/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.mask.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.maskMoney.min.js")"></script>
     <script src="@Url.Content("~/Scripts/fastclick.min.js")"></script>
     <script src="@Url.Content("~/Scripts/app.min.js")"></script>
-    @Scripts.Render("~/bundles/jquery")
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
     @Scripts.Render("~/bundles/js")
     @RenderSection("scripts", required: false)
 </body>

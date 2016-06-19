@@ -8,7 +8,7 @@ namespace Repositories.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.tbCarrier",
+                "dbo.tbCarriers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -20,12 +20,12 @@ namespace Repositories.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.tbRate",
+                "dbo.tbRates",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         IdCarrier = c.Int(nullable: false),
-                        Rate = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         IdUser = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -48,13 +48,13 @@ namespace Repositories.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.tbRate", "IdUser", "dbo.tbUser");
-            DropForeignKey("dbo.tbRate", "IdCarrier", "dbo.tbCarrier");
-            DropIndex("dbo.tbRate", new[] { "IdUser" });
-            DropIndex("dbo.tbRate", new[] { "IdCarrier" });
-            DropTable("dbo.tbUser");
-            DropTable("dbo.tbRate");
-            DropTable("dbo.tbCarrier");
+            DropForeignKey("dbo.tbRates", "IdUser", "dbo.tbUser");
+            DropForeignKey("dbo.tbRates", "IdCarrier", "dbo.tbCarriers");
+            DropIndex("dbo.tbRates", new[] { "IdUser" });
+            DropIndex("dbo.tbRates", new[] { "IdCarrier" });
+            DropTable("dbo.tbUsers");
+            DropTable("dbo.tbRates");
+            DropTable("dbo.tbCarriers");
         }
     }
 }

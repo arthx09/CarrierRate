@@ -107,7 +107,7 @@ namespace WebApp.Controllers
             catch (Exception ex)
             {
                 TempData["Exists"] = true;
-                TempData["Message"] = string.Format(ex.Message, model.User);
+                TempData["Message"] = string.Format(ex.InnerException.Message, model.User);
                 return View(model);
             }
         }
