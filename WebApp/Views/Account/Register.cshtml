@@ -1,0 +1,83 @@
+﻿@using System.Web.Optimization
+@model WebApp.Models.LoginModel
+
+@{
+    ViewBag.Title = "Register User";
+    ViewBag.Versao = "1.0.0";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    @Styles.Render("~/Content/css")
+
+
+</head>
+<body id="page-top" class="index" style="background-color:#eee;">
+    <!-- Header -->
+    <header>
+        <div class="jumbotron text-center">
+            <h2><span class="text-gray">Axado</span></h2>
+        </div>
+    </header>
+    <section>
+        <div class="panel panel-default login-box">
+            <div class="panel-body">
+                <div>
+                    <h4>&nbsp;@ViewBag.Title </h4>
+                    <hr />
+                </div>
+                @if (TempData["Exists"] != null && (bool)TempData["Exists"])
+                {
+                    <div class="divmsg">
+                        <div class="alert alert-success" role="alert">
+                            @TempData["Message"].ToString()
+                        </div>
+                    </div>
+                }
+                <div>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", @id = "frmlogin" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(t => t.User, new { @class = "form-control", @placeholder = "User" })
+                            @Html.ValidationMessageFor(t => t.User)
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(t => t.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(t => t.Password)
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <button id="btnOk" class="btn btn-success btn-block" type="submit"><i class="icon-ok"></i>Register</button>
+                        </div>
+                        <br />
+
+                        <div class="form-group text-right">
+                            Versão:&nbsp;@ViewBag.Versao
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="@Url.Content("~/Scripts/jQuery-2.1.4.min.js")"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/js")
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Entities.Models.tbRate>
+
+@{
+    ViewBag.Title = "Rate";
+}
+
+<div class="box-body">
+    @if (TempData["Exists"] != null && (bool)TempData["Exists"])
+    {
+        <div class="divmsg">
+            <div class="alert alert-success" role="alert">
+                @TempData["Message"].ToString()
+            </div>
+        </div>
+    }
+
+    <div style="padding-bottom:10px;">
+        <a href="@Url.Content("~/Rate/New")" class="btn btn-success "><i class="glyphicon glyphicon-plus"></i>&nbsp;New Rate</a>
+    </div>
+    <div id="Grid" class="table-responsive">
+        @if (Model.Count() == 0)
+        {
+            <div class="text-center" style="padding-top: 20px; display: block;"><span class="label label-danger">No rate registered</span></div>
+        }
+        else
+        {
+            <table class="table table-hover table-highlight-head grid">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tbUser.User)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tbCarrier.NickName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Rate)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUser.User)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCarrier.NickName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+
+
